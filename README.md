@@ -1043,3 +1043,13 @@ service squid restart
 
 - Jika mengunjungi situs google.com akan dilakukan redirect ke super.franky.e16.com 
  ![11](https://user-images.githubusercontent.com/49280352/141647722-77b272d8-649f-47f4-8be5-1d6d2ae20f6e.gif)
+
+### 🏷️ Soal 12
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Bandwidth download luffy dibatasi hingga 10Kbps untuk file .jpg atau .png
+![12-picture](https://user-images.githubusercontent.com/49280352/141647903-0f8b063f-dff5-45cc-ae7e-b4fc50487656.gif)
+
+- Bandwidth download luffy tidak dibatasi kecepatannya untuk file selain .jpg atau .png
+![12-nopicture](https://user-images.githubusercontent.com/49280352/141647932-2aa3359f-9e56-4098-84c9-033cceeee64b.gif)
