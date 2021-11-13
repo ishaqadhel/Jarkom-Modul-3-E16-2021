@@ -998,3 +998,10 @@ service squid restart
 
 - Bisa Akses Internet dan punya dns dari EniesLobby
 ![image](https://user-images.githubusercontent.com/49280352/141643083-7e88a9a0-e554-4656-929f-b50ccd582e03.png)
+
+### 🏷️ Soal 7
+
+#### 🖥️ Node Skypie
+
+- Mempunyai IP 10.37.3.69
+![image](https://user-images.githubusercontent.com/49280352/141643083-7e88a9a0-e554-4656-929f-b50ccd582e03.png)
