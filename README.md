@@ -471,3 +471,44 @@ options {
 service bind9 restart
 ```
 
+## 🏷️ Soal 7: Luffy dan Zoro berencana menjadikan Skypie sebagai server untuk jual beli kapal yang dimilikinya dengan alamat IP yang tetap dengan IP [prefix IP].3.69
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node Jipangu
+
+- Cek Hardware Address dengan command ```ip a``` kemudian lihat interface yang berhubungan dengan router pada kasus ini adalah 'eth0' (lihat topologi), kemudian lihat pada bagian ```link/ether``` didapatkan nilai ```da:10:25:8d:c0:7f```
+- Edit dhcpd.conf dengan menambahkan config baru dibawah
+
+```
+nano /etc/dhcp/dhcpd.conf
+```
+
+```
+host Skypie {
+    hardware ethernet da:10:25:8d:c0:7f;
+    fixed-address 10.37.3.69;
+}
+```
+
+```
+service isc-dhcp-server restart
+```
+
+Keterangan:
+- hardware ethernet adalah berisi hardware address node yang sudah didapat dengan cara diatas
+- fixed-address berisi ip fixed yang mau diisi
+
+#### 🖥️ Node Jipangu
+
+- Edit Config Interface **(Jika diawal belum diganti)**
+
+```
+/etc/network/interfaces
+```
+
+```
+auto eth0
+iface eth0 inet dhcp #ip dari dhcp
+hwaddress ether da:10:25:8d:c0:7f #hardware address
+```
