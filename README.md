@@ -1024,3 +1024,16 @@ service squid restart
 
 - Memerlukan Auth untuk akses http
 ![image](https://user-images.githubusercontent.com/49280352/141647091-ef272b51-90ad-45a0-9fa9-544cc21bb5b3.png)
+
+### 🏷️ Soal 10
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Untuk waktu akses diperbolehkan **9 November Jam 18.00**
+![image](https://user-images.githubusercontent.com/49280352/141647145-92aa9eb0-d08e-4058-93ec-69a05fe963bb.png)
+![image](https://user-images.githubusercontent.com/49280352/141647091-ef272b51-90ad-45a0-9fa9-544cc21bb5b3.png)
+
+- Untuk waktu akses dilarang **9 November Jam 13.00**
+![image](https://user-images.githubusercontent.com/49280352/141647178-be79abfd-2b92-4bb8-8f63-7ec48e446357.png)
+![image](https://user-images.githubusercontent.com/49280352/141647223-27b7762f-6fb0-4cee-827e-556f930fa7a6.png)
+
