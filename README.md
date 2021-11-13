@@ -977,7 +977,7 @@ service squid restart
 - Memiliki isc-dhcp-relay sebagai DHCP Relay
 ![image](https://user-images.githubusercontent.com/49280352/141642695-08414648-04f9-4e49-9887-e89d850e29f3.png)
 
-### 🏷️ Soal 5
+### 🏷️ Soal 5 dan 6
 
 #### 🖥️ Node Loguetown
 
