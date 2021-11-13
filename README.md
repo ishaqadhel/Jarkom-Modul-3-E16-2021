@@ -972,3 +972,29 @@ service squid restart
 ![image](https://user-images.githubusercontent.com/49280352/141642913-240d5171-9524-40aa-8a5e-b5fb9e4fdf16.png)
 
 
+#### 🖥️ Node Foosha
+
+- Memiliki isc-dhcp-relay sebagai DHCP Relay
+![image](https://user-images.githubusercontent.com/49280352/141642695-08414648-04f9-4e49-9887-e89d850e29f3.png)
+
+### 🏷️ Soal 5
+
+#### 🖥️ Node Loguetown
+
+- Bisa Akses Internet dan punya dns dari EniesLobby
+![image](https://user-images.githubusercontent.com/49280352/141643015-63a1f1e1-434a-4107-9992-3f7728fccb33.png)
+
+#### 🖥️ Node Alabasta
+
+- Bisa Akses Internet dan punya dns dari EniesLobby
+![image](https://user-images.githubusercontent.com/49280352/141643037-be8b82aa-d819-4f4e-9bd4-44a0df5ea3c5.png)
+
+#### 🖥️ Node TottoLand
+
+- Bisa Akses Internet dan punya dns dari EniesLobby
+![image](https://user-images.githubusercontent.com/49280352/141643055-6de04426-88c5-49c9-a697-3496ec91093e.png)
+
+#### 🖥️ Node Skypie
+
+- Bisa Akses Internet dan punya dns dari EniesLobby
+![image](https://user-images.githubusercontent.com/49280352/141643083-7e88a9a0-e554-4656-929f-b50ccd582e03.png)
