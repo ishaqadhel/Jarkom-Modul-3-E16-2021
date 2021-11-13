@@ -951,3 +951,22 @@ service squid restart
 
 - Memiliki isc-dhcp-relay sebagai DHCP Relay
 ![image](https://user-images.githubusercontent.com/49280352/141642695-08414648-04f9-4e49-9887-e89d850e29f3.png)
+
+### 🏷️ Soal 3
+
+#### 🖥️ Node Loguetown
+
+- Memiliki IP rentang 10.37.20 - 10.37.99 dan 10.37.150 - 10.37.169
+![image](https://user-images.githubusercontent.com/49280352/141642857-f9a48a95-fb85-453e-ba58-fe01005f5a22.png)
+
+#### 🖥️ Node Alabasta
+
+- Memiliki IP rentang 10.37.20 - 10.37.99 dan 10.37.150 - 10.37.169
+![image](https://user-images.githubusercontent.com/49280352/141642877-14884af9-bd2f-4665-918c-07cbb5d660d4.png)
+
+#### 🖥️ Node TottoLand
+
+- Memiliki IP rentang 10.37.20 - 10.37.99 dan 10.37.30 - 10.37.50
+![image](https://user-images.githubusercontent.com/49280352/141642913-240d5171-9524-40aa-8a5e-b5fb9e4fdf16.png)
+
+
