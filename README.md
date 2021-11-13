@@ -1005,3 +1005,10 @@ service squid restart
 
 - Mempunyai IP 10.37.3.69
 ![image](https://user-images.githubusercontent.com/49280352/141643083-7e88a9a0-e554-4656-929f-b50ccd582e03.png)
+
+### 🏷️ Soal 8
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Lakukan ```export http_proxy=http://jualbelikapal.e16.com:5000```
+![image](https://user-images.githubusercontent.com/49280352/141644000-a37fbfb9-2f22-409f-a47e-2520f8a4c1a7.png)
