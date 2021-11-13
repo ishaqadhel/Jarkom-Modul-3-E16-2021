@@ -944,3 +944,10 @@ service squid restart
 
 - Memiliki squid sebagai Proxy Server
 ![image](https://user-images.githubusercontent.com/49280352/141642615-d49c0760-7251-4c50-a611-d4e33dd1daf4.png)
+
+### 🏷️ Soal 2
+
+#### 🖥️ Node Foosha
+
+- Memiliki isc-dhcp-relay sebagai DHCP Relay
+![image](https://user-images.githubusercontent.com/49280352/141642695-08414648-04f9-4e49-9887-e89d850e29f3.png)
