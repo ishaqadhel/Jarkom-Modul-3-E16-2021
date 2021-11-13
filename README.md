@@ -3,6 +3,8 @@
 **Anggota Kelompok:**
  - Ishaq Adheltyo (05111940000167)
 
+**📝 Note untuk Asisten dan Penguji: Untuk Hasil Testing dan Screenshot Ada Pada Akhir Setelah Pengerjaan (Ada Sub Bagian Sendiri)**
+
 ## 📡 Topologi
 ![image](https://user-images.githubusercontent.com/49280352/141613485-c6661330-906b-47a7-bb37-1f8a31ebd022.png)
 
