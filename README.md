@@ -1037,3 +1037,9 @@ service squid restart
 ![image](https://user-images.githubusercontent.com/49280352/141647178-be79abfd-2b92-4bb8-8f63-7ec48e446357.png)
 ![image](https://user-images.githubusercontent.com/49280352/141647223-27b7762f-6fb0-4cee-827e-556f930fa7a6.png)
 
+### 🏷️ Soal 11
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Jika mengunjungi situs google.com akan dilakukan redirect ke super.franky.e16.com 
+ ![11](https://user-images.githubusercontent.com/49280352/141647722-77b272d8-649f-47f4-8be5-1d6d2ae20f6e.gif)
