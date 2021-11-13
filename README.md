@@ -1063,3 +1063,6 @@ service squid restart
 
 - Bandwidth download zoro tidak dibatasi kecepatannya untuk file apapun (contoh: selain .jpg atau .png)
 ![13-nopicture](https://user-images.githubusercontent.com/49280352/141648045-41b241b9-07f8-4f61-8b65-d67735546de0.gif)
+
+## 🧗 Kendala
+- Sempet bingung tentang DHCP Relay karena tidak ada di modul
