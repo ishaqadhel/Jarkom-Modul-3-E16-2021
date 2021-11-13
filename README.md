@@ -105,9 +105,9 @@ Keterangan:
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s [Prefix IP].0.0/16
 ```
 Keterangan:
-- iptables merupakan suatu tools dalam sistem operasi Linux yang berfungsi sebagai filter terhadap lalu lintas data.
-- Nat adalah metode penafsiran alamat jaringan yang digunakan untuk menghubungkan lebih dari satu komputer ke jaringan internet dengan satu IP.
-- Masquerade berfungsi untuk menyamarkan paket, misal mengganti alamat pengirim dengan alamat router.
+- **iptables** merupakan suatu tools dalam sistem operasi Linux yang berfungsi sebagai filter terhadap lalu lintas data.
+- **Nat** adalah metode penafsiran alamat jaringan yang digunakan untuk menghubungkan lebih dari satu komputer ke jaringan internet dengan satu IP.
+- **Masquerade** berfungsi untuk menyamarkan paket, misal mengganti alamat pengirim dengan alamat router.
 
 - Buka /etc/resolv.conf
 
@@ -420,15 +420,15 @@ service isc-dhcp-server start
 ```
 
 Keterangan:
-- subnet 'NID' adalah IP Interface tujuan dengan byte terakhirnya di 0 kan (Untuk NID yang proper akan dibahas pada modul berikutnya)
-- netmask 'Netmask adalah nilai netmask pada subnet, bisa lihat di edit network config GNS3
-- range 'IP_Awal' 'IP_Akhir' Rentang alamat IP yang akan didistribusikan dan dipakai secara dinamis
-- option routers 'Gateway' adalah IP gateway dari router menuju client sesuai konfigurasi subnet
-- option broadcast-address 'IP_Broadcast' IP broadcast pada subnet
-- option domain-name-servers 'DNS_yang_diinginkan' adalah DNS yang ingin kita berikan pada client
-- Lease time adalah Waktu yang dialokasikan ketika sebuah IP dipinjamkan kepada komputer client. 
-- default-lease-time 'Waktu' adalah Lama waktu DHCP server meminjamkan alamat IP kepada client, dalam satuan detik
-- max-lease-time 'Waktu' adalah Waktu maksimal yang di alokasikan untuk peminjaman IP oleh DHCP server ke client dalam satuan detik
+- **subnet 'NID'** adalah IP Interface tujuan dengan byte terakhirnya di 0 kan (Untuk NID yang proper akan dibahas pada modul berikutnya)
+- **netmask 'Netmask'** adalah nilai netmask pada subnet, bisa lihat di edit network config GNS3
+- **range 'IP_Awal' 'IP_Akhir'** Rentang alamat IP yang akan didistribusikan dan dipakai secara dinamis
+- **option routers 'Gateway'** adalah IP gateway dari router menuju client sesuai konfigurasi subnet
+- **option broadcast-address 'IP_Broadcast'** adalah IP broadcast pada subnet
+- **option domain-name-servers 'DNS_yang_diinginkan'** adalah DNS yang ingin kita berikan pada client
+- **Lease time** adalah Waktu yang dialokasikan ketika sebuah IP dipinjamkan kepada komputer client. 
+- **default-lease-time 'Waktu'** adalah Lama waktu DHCP server meminjamkan alamat IP kepada client, dalam satuan detik
+- **max-lease-time 'Waktu'** adalah Waktu maksimal yang di alokasikan untuk peminjaman IP oleh DHCP server ke client dalam satuan detik
 
 #### 🖥️ Node EniesLobby
 
@@ -496,8 +496,8 @@ service isc-dhcp-server restart
 ```
 
 Keterangan:
-- hardware ethernet adalah berisi hardware address node yang sudah didapat dengan cara diatas
-- fixed-address berisi ip fixed yang mau diisi
+- **hardware ethernet** adalah berisi hardware address node yang sudah didapat dengan cara diatas
+- **fixed-address** berisi ip fixed yang mau diisi
 
 #### 🖥️ Node Jipangu
 
@@ -511,4 +511,71 @@ Keterangan:
 auto eth0
 iface eth0 inet dhcp #ip dari dhcp
 hwaddress ether da:10:25:8d:c0:7f #hardware address
+```
+
+## 🏷️ Soal 8: Pada Loguetown, proxy harus bisa diakses dengan nama jualbelikapal.yyy.com dengan port yang digunakan adalah 5000. Pada Loguetown, proxy harus bisa diakses dengan nama jualbelikapal.yyy.com dengan port yang digunakan adalah 5000
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node Water7
+
+- Edit squid.conf dengan menambah beberapa aturan pada awal file
+
+```
+nano /etc/squid/squid.conf
+```
+
+```
+http_port 5000
+visible_hostname jualbelikapal.e16.com
+http_access allow all
+```
+
+```
+service squid restart
+```
+
+Keterangan:
+- **http_port** adalah port untuk akses http
+- **visible_hostname** adalah nama hostname yang bisa dilihat oleh user
+- **http_access allow all** adalah config untuk membolehkan seluruh client mengakses http
+
+#### 🖥️ Node EniesLobby
+
+- Edit named.conf.local dengan menambahkan zone untuk jualbelikapal.e16.com
+
+```
+nano /etc/bind/named.conf.local
+```
+
+```
+zone "jualbelikapal.e16.com" {
+        type master;
+        file "/etc/bind/kaizoku/jualbelikapal.e16.com";
+};
+```
+
+```
+mkdir kaizoku
+nano /etc/bind/kaizoku/jualbelikapal.e16.com
+```
+
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     jualbelikapal.e16.com. root.jualbelikapal.e16.com. (
+                        2021110901      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      jualbelikapal.e16.com.
+@       IN      A       10.37.2.3
+```
+
+```
+service bind9 restart
 ```
