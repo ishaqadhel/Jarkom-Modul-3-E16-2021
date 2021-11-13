@@ -688,3 +688,155 @@ service squid restart
 ```
 
 **NOTE: cara untuk nomor 10 bisa 2, deny waktu yang dilarang atau membuat allow pada waktu yang diperbolehkan**
+
+## 🏷️ Soal 11: Agar transaksi bisa lebih fokus berjalan, maka dilakukan redirect website agar mudah mengingat website transaksi jual beli kapal. Setiap mengakses google.com, akan diredirect menuju super.franky.yyy.com dengan website yang sama pada soal shift modul 2. Web server super.franky.yyy.com berada pada node Skypie
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node EniesLobby
+
+- Edit named.conf.local dengan menambahkan zone untuk super.franky.e16.com
+
+```
+nano /etc/bind/named.conf.local
+```
+
+```
+zone "jualbelikapal.e16.com" {
+        type master;
+        file "/etc/bind/kaizoku/jualbelikapal.e16.com";
+};
+
+zone "super.franky.e16.com" {
+    type master;
+    file "/etc/bind/kaizoku/super.franky.e16.com";
+    allow-transfer { 10.37.3.69; }; // Masukan IP Skypie tanpa tanda petik
+};
+```
+
+- Buat bind data untuk super.franky.e16.com pada folder kaizoku arahkan ke Skypie karena webserver ada disana
+
+```
+nano /etc/bind/kaizoku/super.franky.e16.com
+```
+
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     super.franky.e16.com. root.super.franky.e16.com. (
+                        2021110901      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      super.franky.e16.com.
+@       IN      A       10.37.3.69
+www     IN      CNAME   super.franky.e16.com.
+```
+
+```
+service bind9 restart
+```
+
+#### 🖥️ Node Skypie
+
+- Buat config untuk super.franky.e16.com pada ```/etc/apache2/sites-available/```
+
+```
+nano /etc/apache2/sites-available/super.franky.e16.com.conf
+```
+
+```
+<VirtualHost *:80>
+    ServerName super.franky.e16.com
+    ServerAlias www.super.franky.e16.com
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/super.franky.e16.com
+
+    <Directory /var/www/super.franky.e16.com>
+        Options +Indexes
+        AllowOverride All
+    </Directory>
+
+    <Directory /var/www/super.franky.e16.com/public>
+        Options +Indexes
+    </Directory>
+
+    Alias "/js" "/var/www/super.franky.e16.com/public/js"
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    ErrorDocument 404 /error/404.html
+</VirtualHost>
+```
+
+- Enable config super.franky.e16.com dengan ```a2ensite``` dan copy isi super.franky.e16.com dari zip github modul 2 **(Link Repo dan cara download ada pada langkah install tools diatas)**
+
+```
+cd /etc/apache2/sites-available
+a2ensite super.franky.e16.com.conf
+service apache2 restart
+cd
+cd Praktikum-Modul-2-Jarkom-main
+cp -r super.franky /var/www/super.franky.e16.com
+```
+
+#### 🖥️ Node Water7
+
+- Edit resolv.conf dengan menambah IP EniesLobby
+
+```
+nano /etc/resolv.conf
+```
+
+```
+nameserver 10.37.2.2
+nameserver 192.168.122.1
+```
+
+- Edit squid.conf dengan menambahkan config untuk redirect dari google.com ke super.franky.e16.com
+
+```
+nano /etc/squid/squid.conf
+```
+
+```
+include /etc/squid/acl.conf
+
+http_port 5000
+visible_hostname jualbelikapal.e16.com
+
+http_access deny AVAILABLE_WORKING_1
+http_access deny AVAILABLE_WORKING_2
+http_access deny AVAILABLE_WORKING_3
+http_access deny AVAILABLE_WORKING_4
+http_access deny AVAILABLE_WORKING_5
+http_access deny AVAILABLE_WORKING_6
+http_access deny AVAILABLE_WORKING_7
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+
+acl BLACKLIST dstdomain google.com
+deny_info http://super.franky.e16.com/ BLACKLIST
+http_reply_access deny BLACKLIST
+```
+
+```
+service squid restart
+```
+
+Keterangan:
+- **acl BLACKLIST dstdomain google.com** adalah acl yang berisi config untuk blacklist destination domain kearah google.com
+- **deny_info http://super.franky.e16.com/ BLACKLIST** adalah untuk return error jika request tidak memenuhi pada http_access
+- **http_reply_access deny BLACKLIST** untuk blockir response yang didapat dari google.com
