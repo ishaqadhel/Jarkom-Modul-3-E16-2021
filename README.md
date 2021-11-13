@@ -1022,7 +1022,7 @@ service squid restart
 
 #### 🖥️ Node Loguetown / Alabasta / TottoLand
 
-- Memerlukan Auth untuk akses http
+- Memerlukan Auth berisi Username dan Password untuk mengakses HTTP
 ![image](https://user-images.githubusercontent.com/49280352/141647091-ef272b51-90ad-45a0-9fa9-544cc21bb5b3.png)
 
 ### 🏷️ Soal 10
@@ -1053,3 +1053,13 @@ service squid restart
 
 - Bandwidth download luffy tidak dibatasi kecepatannya untuk file selain .jpg atau .png
 ![12-nopicture](https://user-images.githubusercontent.com/49280352/141647932-2aa3359f-9e56-4098-84c9-033cceeee64b.gif)
+
+### 🏷️ Soal 13
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Bandwidth download zoro tidak dibatasi kecepatannya untuk file apapun (contoh: .jpg atau .png)
+![13-picture](https://user-images.githubusercontent.com/49280352/141648019-1f39ff37-1a04-4647-a6ff-a7b58421bea8.gif)
+
+- Bandwidth download zoro tidak dibatasi kecepatannya untuk file apapun (contoh: selain .jpg atau .png)
+![13-nopicture](https://user-images.githubusercontent.com/49280352/141648045-41b241b9-07f8-4f61-8b65-d67735546de0.gif)
