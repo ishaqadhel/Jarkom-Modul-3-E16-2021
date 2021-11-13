@@ -981,17 +981,17 @@ service squid restart
 
 #### 🖥️ Node Loguetown
 
-- Bisa Akses Internet dan punya dns dari EniesLobby
+- Bisa Akses Internet, punya dns dari EniesLobby, dan Lease Time 360 detik
 ![image](https://user-images.githubusercontent.com/49280352/141643015-63a1f1e1-434a-4107-9992-3f7728fccb33.png)
 
 #### 🖥️ Node Alabasta
 
-- Bisa Akses Internet dan punya dns dari EniesLobby
+- Bisa Akses Internet, punya dns dari EniesLobby, dan Lease Time 360 detik
 ![image](https://user-images.githubusercontent.com/49280352/141643037-be8b82aa-d819-4f4e-9bd4-44a0df5ea3c5.png)
 
 #### 🖥️ Node TottoLand
 
-- Bisa Akses Internet dan punya dns dari EniesLobby
+- Bisa Akses Internet, punya dns dari EniesLobby, dan Lease Time 720 detik
 ![image](https://user-images.githubusercontent.com/49280352/141643055-6de04426-88c5-49c9-a697-3496ec91093e.png)
 
 #### 🖥️ Node Skypie
