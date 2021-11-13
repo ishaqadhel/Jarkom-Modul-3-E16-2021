@@ -1012,3 +1012,15 @@ service squid restart
 
 - Lakukan ```export http_proxy=http://jualbelikapal.e16.com:5000```
 ![image](https://user-images.githubusercontent.com/49280352/141644000-a37fbfb9-2f22-409f-a47e-2520f8a4c1a7.png)
+
+### 🏷️ Soal 9
+
+#### 🖥️ Node Water7
+
+- Memiliki auth luffybelikapale16 dan zorobelikapale16
+![image](https://user-images.githubusercontent.com/49280352/141644317-4b8279af-f56e-4ed1-85d4-bbbe648f61ec.png)
+
+#### 🖥️ Node Loguetown / Alabasta / TottoLand
+
+- Memerlukan Auth untuk akses http
+![image](https://user-images.githubusercontent.com/49280352/141647091-ef272b51-90ad-45a0-9fa9-544cc21bb5b3.png)
