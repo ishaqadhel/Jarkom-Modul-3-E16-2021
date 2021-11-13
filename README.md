@@ -840,3 +840,86 @@ Keterangan:
 - **acl BLACKLIST dstdomain google.com** adalah acl yang berisi config untuk blacklist destination domain kearah google.com
 - **deny_info http://super.franky.e16.com/ BLACKLIST** adalah untuk return error jika request tidak memenuhi pada http_access
 - **http_reply_access deny BLACKLIST** untuk blockir response yang didapat dari google.com
+
+## 🏷️ Soal 12 dan 13: Saatnya berlayar! Luffy dan Zoro akhirnya memutuskan untuk berlayar untuk mencari harta karun di super.franky.yyy.com. Tugas pencarian dibagi menjadi dua misi, Luffy bertugas untuk mendapatkan gambar (.png, .jpg), sedangkan Zoro mendapatkan sisanya. Karena Luffy orangnya sangat teliti untuk mencari harta karun, ketika ia berhasil mendapatkan gambar, ia mendapatkan gambar dan melihatnya dengan kecepatan 10 kbps. Sedangkan, Zoro yang sangat bersemangat untuk mencari harta karun, sehingga kecepatan kapal Zoro tidak dibatasi ketika sudah mendapatkan harta yang diinginkannya.
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node Water7
+
+- Buat file acl-bandwidth.conf untuk menaruh aturan config pembatasan bandwidth pada squid
+
+```
+nano /etc/squid/acl-bandwidth.conf
+```
+
+```
+acl download url_regex -i \.jpg$ \.png$
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+
+acl luffy proxy_auth luffybelikapale16
+acl zoro proxy_auth zorobelikapale16
+
+delay_pools 2
+delay_class 1 1
+delay_parameters 1 1250/1250
+delay_access 1 deny zoro
+delay_access 1 allow download
+delay_access 1 deny all
+
+delay_class 2 1
+delay_parameters 2 -1/-1
+delay_access 2 allow zoro
+delay_access 2 deny luffy
+delay_access 2 deny all
+```
+
+Keterangan: 
+- **acl download url_regex -i \.jpg$ \.png$** untuk deklarasi acl download yang berisi aturan memiliki url yang mengandung kata .jpg dan .png
+- **auth_param basic program** untuk deklarasi file auth diluar
+- **acl luffy proxy_auth luffybelikapale16** untuk deklarasi acl luffy berisi aturan auth username luffybelikapale16
+- **acl zoro proxy_auth zorobelikapale16** untuk deklarasi acl zoro berisi aturan auth username zorobelikapale16
+- **delay_pools** digunakan untuk menentukan berapa bagian/pool yang akan dibuat
+- **delay_class** digunakan untuk menentukan tipe/class pembagian bandwith dari setiap pool
+- **delay_access** digunakan untuk membuat aturan mengakses pool yang telah dibuat (ada allow atau deny)
+- **delay_parameter** digunakan untuk mengatur parameter dari pool yang telah dibuat
+- **delay_parameters 1 1250/1250** karena pada soal diminta maksimal 10 kbps maka, 1250 bytes -> 10000 bit (10kbps)
+
+- Edit squid.conf dengan include file acl-bandwidth.conf yang telah dibuat tadi
+
+```
+nano /etc/squid/squid.conf
+```
+
+```
+include /etc/squid/acl.conf
+include /etc/squid/acl-bandwidth.conf
+
+http_port 5000
+visible_hostname jualbelikapal.e16.com
+
+http_access deny AVAILABLE_WORKING_1
+http_access deny AVAILABLE_WORKING_2
+http_access deny AVAILABLE_WORKING_3
+http_access deny AVAILABLE_WORKING_4
+http_access deny AVAILABLE_WORKING_5
+http_access deny AVAILABLE_WORKING_6
+http_access deny AVAILABLE_WORKING_7
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+
+acl BLACKLIST dstdomain google.com
+deny_info http://super.franky.e16.com/ BLACKLIST
+http_reply_access deny BLACKLIST
+```
+
+```
+service squid restart 
+```
