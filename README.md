@@ -506,7 +506,7 @@ Keterangan:
 - Edit Config Interface **(Jika diawal belum diganti)**
 
 ```
-/etc/network/interfaces
+nano /etc/network/interfaces
 ```
 
 ```
