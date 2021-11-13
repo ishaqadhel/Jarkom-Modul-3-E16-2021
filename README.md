@@ -631,3 +631,60 @@ Keterangan:
 - **acl** digunakan untuk mendefinisikan pengaturan akses tertentu
 - **acl USERS proxy_auth REQUIRED** digunakan untuk memberitahu bahwa dibutuhkan auth
 - **http_access allow USERS** untuk memasukan aturan USERS pada http_access dimana yang diperbolehkan membuka http hanya melewati auth
+
+## 🏷️ Soal 10: Transaksi jual beli tidak dilakukan setiap hari, oleh karena itu akses internet dibatasi hanya dapat diakses setiap hari Senin-Kamis pukul 07.00-11.00 dan setiap hari Selasa-Jum’at pukul 17.00-03.00 keesokan harinya (sampai Sabtu pukul 03.00)
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node Water7
+
+- Buat file bernama acl.conf yang berisi acl untuk waktu yang dilarang akses
+
+```
+nano /etc/squid/acl.conf
+```
+
+```
+acl AVAILABLE_WORKING_1 time S 00:00-23:59
+acl AVAILABLE_WORKING_2 time MT 00:00-06:59
+acl AVAILABLE_WORKING_3 time M 11:01-23:59
+acl AVAILABLE_WORKING_4 time TWH 11:01-16:59
+acl AVAILABLE_WORKING_5 time WH 03:01-06:59
+acl AVAILABLE_WORKING_6 time F 03:01-16:59
+acl AVAILABLE_WORKING_7 time A 03:01-23:59
+```
+
+- Edit config squid dengan include acl.conf serta deny http_access pada waktu yang dilarang di acl.conf
+
+```
+nano /etc/squid/squid.conf
+```
+
+```
+include /etc/squid/acl.conf
+
+http_port 5000
+visible_hostname jualbelikapal.e16.com
+
+http_access deny AVAILABLE_WORKING_1
+http_access deny AVAILABLE_WORKING_2
+http_access deny AVAILABLE_WORKING_3
+http_access deny AVAILABLE_WORKING_4
+http_access deny AVAILABLE_WORKING_5
+http_access deny AVAILABLE_WORKING_6
+http_access deny AVAILABLE_WORKING_7
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+```
+
+```
+service squid restart
+```
+
+**NOTE: cara untuk nomor 10 bisa 2, deny waktu yang dilarang atau membuat allow pada waktu yang diperbolehkan**
