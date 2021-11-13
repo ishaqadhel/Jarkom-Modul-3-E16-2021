@@ -579,3 +579,55 @@ $TTL    604800
 ```
 service bind9 restart
 ```
+
+## 🏷️ Soal 9: Agar transaksi jual beli lebih aman dan pengguna website ada dua orang, proxy dipasang autentikasi user proxy dengan enkripsi MD5 dengan dua username, yaitu luffybelikapalyyy dengan password luffy_yyy dan zorobelikapalyyy dengan password zoro_yyy
+
+### ✍️ Langkah-Langkah Pengerjaan:
+
+#### 🖥️ Node Water7
+
+- Buat akun untuk luffybelikapale16 dan zorobelikapale16 yang disimpan di ```/etc/squid/passwd```
+
+```
+touch /etc/squid/passwd
+
+htpasswd -m /etc/squid/passwd luffybelikapale16
+luffy_e16
+
+htpasswd -m /etc/squid/passwd zorobelikapale16
+zoro_e16
+```
+
+- Edit config squid dengan menambahkan config auth baru
+
+```
+nano /etc/squid/squid.conf
+```
+
+```
+http_port 5000
+visible_hostname jualbelikapal.e16.com
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+```
+
+```
+service squid restart
+```
+
+Keterangan:
+- **auth_param** digunakan untuk mengatur auth pada squid
+- **auth_param basic program** digunakan untuk mendelarasikan file auth eksternal
+- **auth_param basic children** adalah jumlah maksimal autentikator muncul
+- **auth_param basic realm Proxy** Teks yang akan muncul pada pop-up autentikasi
+- **auth_param basic credentialsttl** adalah masa aktif suatu autentikasi
+- **auth_param basic casesensitive** digunakan untuk mengatur apakah username bersifat case sensitive atau tidak
+- **acl** digunakan untuk mendefinisikan pengaturan akses tertentu
+- **acl USERS proxy_auth REQUIRED** digunakan untuk memberitahu bahwa dibutuhkan auth
+- **http_access allow USERS** untuk memasukan aturan USERS pada http_access dimana yang diperbolehkan membuka http hanya melewati auth
