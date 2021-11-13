@@ -964,6 +964,8 @@ service squid restart
 - Memiliki IP rentang 10.37.20 - 10.37.99 dan 10.37.150 - 10.37.169
 ![image](https://user-images.githubusercontent.com/49280352/141642877-14884af9-bd2f-4665-918c-07cbb5d660d4.png)
 
+### 🏷️ Soal 4
+
 #### 🖥️ Node TottoLand
 
 - Memiliki IP rentang 10.37.20 - 10.37.99 dan 10.37.30 - 10.37.50
