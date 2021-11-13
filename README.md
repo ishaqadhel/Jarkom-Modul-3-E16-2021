@@ -925,3 +925,22 @@ http_reply_access deny BLACKLIST
 ```
 service squid restart 
 ```
+
+## 👨‍💻 Testing dan Screenshot
+
+### 🏷️ Soal 1
+
+#### 🖥️ Node EniesLobby
+
+- Memiliki Bind9 sebagai DNS Server
+![image](https://user-images.githubusercontent.com/49280352/141642528-9f4e399f-ac7c-4dcf-9e78-46786ec83ace.png)
+
+#### 🖥️ Node Jipangu
+
+- Memiliki isc-dhcp-server sebagai DHCP Server
+![image](https://user-images.githubusercontent.com/49280352/141642561-58a756c7-20e2-4b9b-b91a-f95a22820968.png)
+
+#### 🖥️ Node Water7
+
+- Memiliki squid sebagai Proxy Server
+![image](https://user-images.githubusercontent.com/49280352/141642615-d49c0760-7251-4c50-a611-d4e33dd1daf4.png)
